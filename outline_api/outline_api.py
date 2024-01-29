@@ -1,11 +1,16 @@
 import os
-import requests
 
 
 class OutlineServer:
+    server_keys = set()
 
     def __init__(self, outline_api_url):
-        self.key = outline_api_url
+        self.__outline_api_url = outline_api_url
+        self.server_keys.add(outline_api_url)
+
+    @classmethod
+    def check_unique_key(cls, arg):
+        return arg in cls.server_keys
 
     @property
     def key(self):
@@ -17,11 +22,12 @@ class OutlineServer:
 
     @key.deleter
     def key(self):
+        self.server_keys.remove(self.__outline_api_url)
         del self.__outline_api_url
 
 
-test = OutlineServer(os.getenv("VPN_API_URL"))
+test = OutlineServer(123)
 print(test.key)
 
-test2 = OutlineServer(os.getenv("BOT_IP"))
+test2 = OutlineServer(456)
 print(test2.key)
