@@ -47,8 +47,8 @@ class OutlineServer:
                 self.__remove_server_key()
                 self.__add_server_key(outline_api_url)
                 return outline_api_url
-            else:
-                raise InvalidServerKeyError("Invalid Outline API URL")
+        else:
+            raise InvalidServerKeyError("Invalid Outline API URL")
 
     @property
     def server_key(self) -> Optional[str]:
