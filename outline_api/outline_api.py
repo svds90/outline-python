@@ -25,12 +25,11 @@ class OutlineServer:
                 return outline_api_url
 
     def __validate_server_key(self, outline_api_url: str) -> bool:
+
         if not isinstance(outline_api_url, str):
             raise InvalidServerKeyError("Key must be a string")
-            return False
-        elif len(outline_api_url) == 0:
+        elif len(outline_api_url.strip()) == 0:
             raise InvalidServerKeyError("Empty value")
-            return False
         else:
             return True
 
